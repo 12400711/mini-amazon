@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - ShopZone</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-top">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🛒</span>
+                Shop<span>Zone</span>
+            </a>
+            <!-- Search Bar -->
+            <form class="search-bar">
+                <input type="text" placeholder="Search for products, brands and more...">
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <!-- Navigation Menu -->
+            <div class="nav-menu">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Bottom Navigation -->
+        <div class="navbar-bottom">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">All Products</a></li>
+                <li><a href="products.html?category=electronics">Electronics</a></li>
+                <li><a href="products.html?category=jewelery">Jewelry</a></li>
+                <li><a href="products.html?category=men's clothing">Men's Clothing</a></li>
+                <li><a href="products.html?category=women's clothing">Women's Clothing</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Products Page -->
+    <main class="products-page">
+        <div class="products-header">
+            <h1>All Products</h1>
+            <div class="filter-sort">
+                <label for="category-filter">Category:</label>
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <!-- Categories will be loaded dynamically -->
+                </select>
+                <label for="sort-filter">Sort by:</label>
+                <select id="sort-filter">
+                    <option value="default">Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name-a">Name: A to Z</option>
+                    <option value="name-z">Name: Z to A</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+        </div>
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-grid">
+            <div class="loading-spinner" id="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-back-to-top">
+            Back to top
+        </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About ShopZone</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="#">Sell products on ShopZone</a></li>
+                    <li><a href="#">Sell on ShopZone Business</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>ShopZone Payment Products</h3>
+                <ul>
+                    <li><a href="#">ShopZone Business Card</a></li>
+                    <li><a href="#">Shop with Points</a></li>
+                    <li><a href="#">Reload Your Balance</a></li>
+                    <li><a href="#">ShopZone Currency Converter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Let Us Help You</h3>
+                <ul>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Your Orders</a></li>
+                    <li><a href="#">Shipping Rates & Policies</a></li>
+                    <li><a href="#">Returns & Replacements</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 ShopZone, Inc. or its affiliates. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        // Check for category parameter in URL on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            if (category) {
+                const categoryFilter = document.getElementById('category-filter');
+                if (categoryFilter) {
+                    categoryFilter.value = category;
+                    // Trigger products reload
+                    loadProducts();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

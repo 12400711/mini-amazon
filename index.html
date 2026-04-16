@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopZone - Your Premier Online Shopping Destination</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="navbar-top">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">🛒</span>
+          Shop<span>Zone</span>
+        </a>
+        <form class="search-bar">
+          <input
+            type="text"
+            placeholder="Search for products, brands and more..."
+          />
+          <button type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <div class="nav-menu">
+          <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+          <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+          </button>
+        </div>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <div class="navbar-bottom">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="products.html?category=electronics">Electronics</a></li>
+          <li><a href="products.html?category=jewelery">Jewelry</a></li>
+          <li>
+            <a href="products.html?category=men's clothing">Men's Clothing</a>
+          </li>
+          <li>
+            <a href="products.html?category=women's clothing"
+              >Women's Clothing</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to ShopZone</h1>
+        <p>
+          Discover amazing products at unbeatable prices. Shop now and enjoy
+          fast delivery!
+        </p>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="categories-grid" id="categories-grid">
+        <div
+          class="category-card"
+          onclick="window.location.href = 'products.html?category=electronics'"
+        >
+          <div class="category-icon">💻</div>
+          <h3>Electronics</h3>
+          <p>Shop now</p>
+        </div>
+        <div
+          class="category-card"
+          onclick="window.location.href = 'products.html?category=jewelery'"
+        >
+          <div class="category-icon">💎</div>
+          <h3>Jewelry</h3>
+          <p>Shop now</p>
+        </div>
+        <div
+          class="category-card"
+          onclick="window.location.href = 'products.html?category=men\'s clothing'"
+        >
+          <div class="category-icon">👔</div>
+          <h3>Men's Clothing</h3>
+          <p>Shop now</p>
+        </div>
+        <div
+          class="category-card"
+          onclick="window.location.href = 'products.html?category=women\'s clothing'"
+        >
+          <div class="category-icon">👗</div>
+          <h3>Women's Clothing</h3>
+          <p>Shop now</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="products-section">
+      <div class="products-header">
+        <h2 class="section-title">Featured Products</h2>
+        <a href="products.html" class="btn btn-secondary">View All Products</a>
+      </div>
+      <div class="products-grid" id="featured-products">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-back-to-top">Back to top</div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Get to Know Us</h3>
+          <ul>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">About ShopZone</a></li>
+            <li><a href="#">Investor Relations</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Make Money with Us</h3>
+          <ul>
+            <li><a href="#">Sell products on ShopZone</a></li>
+            <li><a href="#">Sell on ShopZone Business</a></li>
+            <li><a href="#">Become an Affiliate</a></li>
+            <li><a href="#">Advertise Your Products</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>ShopZone Payment Products</h3>
+          <ul>
+            <li><a href="#">ShopZone Business Card</a></li>
+            <li><a href="#">Shop with Points</a></li>
+            <li><a href="#">Reload Your Balance</a></li>
+            <li><a href="#">ShopZone Currency Converter</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Let Us Help You</h3>
+          <ul>
+            <li><a href="#">Your Account</a></li>
+            <li><a href="#">Your Orders</a></li>
+            <li><a href="#">Shipping Rates & Policies</a></li>
+            <li><a href="#">Returns & Replacements</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 ShopZone, Inc. or its affiliates. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Load products on page load
+      document.addEventListener("DOMContentLoaded", async function () {
+        const productsGrid = document.getElementById("featured-products");
+        try {
+          const products = await fetchProducts();
+          const featuredProducts = products.slice(0, 8);
+          productsGrid.innerHTML = featuredProducts
+            .map((product) => createProductCard(product))
+            .join("");
+        } catch (error) {
+          console.error("Error loading products:", error);
+          productsGrid.innerHTML =
+            '<p style="text-align:center;padding:40px;">Failed to load products. Please try again.</p>';
+        }
+      });
+    </script>
+  </body>
+</html>
+
