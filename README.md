@@ -1,4 +1,4 @@
-# ShopZone - E-Commerce Website
+# mini amazon - E-Commerce Website
 
 A professional Amazon-style e-commerce website built with HTML5, CSS3, and Vanilla JavaScript using the Fake Store API.
 
