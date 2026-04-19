@@ -162,9 +162,6 @@ To make this project more impressive for a professional portfolio:
 - Categories: `https://fakestoreapi.com/products/categories`
 - Products by category: `https://fakestoreapi.com/products/category/{category}`
 
-## 📄 License
-
-This project is for educational purposes. Feel free to use it as a starting point for your own projects.
 
 ---
 
